@@ -20,13 +20,19 @@
             "request": "launch",
             "type": "dart",
             "deviceId": "ED2ADF74-5882-4CFB-A584-0C5DAD66ABCD"
+        },
+        {
+            "name": "Pixel 7 API 34",
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
         }
     ],
     // run on all devices
     "compounds": [
         {
             "name": "All devices",
-            "configurations": ["IPhone 15 Pro Max","IPad Pro"]
+            "configurations": ["IPhone 15 Pro Max","Pixel 7 API 34"]
         }
     ]
     

@@ -15,7 +15,7 @@ class App extends StatelessWidget {
       child: GetMaterialApp(
           title: 'Doc Doc',
           theme: ThemeData(
-            primaryColor: ColorsManager.primary,
+            primaryColor: ColorsManager.mainBlue,
             scaffoldBackgroundColor: Colors.white
           ),
           debugShowCheckedModeBanner: false,

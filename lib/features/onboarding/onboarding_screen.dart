@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/core/routes/routes.dart';
 import 'package:flutter_advanced/core/themes/styles.dart';
 import 'package:flutter_advanced/core/widgets/regular_button.dart';
@@ -20,7 +21,7 @@ class OnboardingScreen extends StatelessWidget {
               child:  Column(
                 children: [
                     const DocLogo(),
-                    SizedBox(height: 30.h,),
+                    verticalSpace(30),
                     Stack(
                       children: [
                         SvgPicture.asset('assets/images/bg_logo.svg'),
@@ -44,7 +45,7 @@ class OnboardingScreen extends StatelessWidget {
                             child: Text(
                             'Best Doctor Appointment App',
                             textAlign: TextAlign.center,
-                            style: TextStyles.font32PrimaryBold.copyWith(
+                            style: TextStyles.font32BlueBold.copyWith(
                               height: 1.4,
                               
                             )
@@ -61,10 +62,10 @@ class OnboardingScreen extends StatelessWidget {
                             'tttManage and schedule all of your medical appointments easily with Docdoc to get a new experience.',
                             textAlign: TextAlign.center,
                             maxLines: 2,
-                            style: TextStyles.font13GreyRegular,
+                            style: TextStyles.font13greyRegular,
                           ),
-                          SizedBox(height: 25.h,),
-                          RegularButton(text: 'Get Started',onPressed: (){
+                          verticalSpace(25),
+                          RegularButton(buttonText: 'Get Started',onPressed: (){
                             Get.toNamed(Routes.login);
                           },)
                         ],

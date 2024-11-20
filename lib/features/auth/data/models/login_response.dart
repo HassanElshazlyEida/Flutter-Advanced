@@ -1,4 +1,5 @@
-import 'package:flutter_advanced/features/auth/data/user_data.dart';
+
+import 'package:flutter_advanced/features/auth/data/models/user_data.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'login_response.g.dart';

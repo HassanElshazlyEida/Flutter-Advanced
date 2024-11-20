@@ -1,3 +1,5 @@
+import 'package:flutter_advanced/core/di/dependency_injection.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/cubit/login_cubit.dart';
 import 'package:flutter_advanced/features/auth/widgets/login_screen.dart';
 import 'package:flutter_advanced/features/onboarding/onboarding_screen.dart';
 import 'package:get/get.dart';
@@ -17,6 +19,7 @@ class AppPages {
      GetPage(
       name: Routes.login,
       page: ()  => const LoginScreen(), 
+      binding: BindingsBuilder.put(() => getIt<LoginCubit>())
     ),
   ];
 }

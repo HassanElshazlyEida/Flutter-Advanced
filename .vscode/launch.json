@@ -25,20 +25,20 @@
             "name": "Pixel 7 API 34 android 14.0",
             "request": "launch",
             "type": "dart",
-            "deviceId": "emulator-5556"
+            "deviceId": "emulator-5554"
         },
         {
             "name": "Phone API 31 android 12.0",
             "request": "launch",
             "type": "dart",
-            "deviceId": "emulator-5554"
+            "deviceId": "emulator-5556"
         }
     ],
     // run on all devices
     "compounds": [
         {
             "name": "All devices",
-            "configurations": ["IPhone 15 Pro Max","Pixel 7 API 34 android 14.0","Phone API 31 android 12.0"]
+            "configurations": ["IPhone 15 Pro Max","Phone API 31 android 12.0"]
         }
     ]
     

@@ -2,23 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/core/themes/styles.dart';
 import 'package:flutter_advanced/core/widgets/regular_button.dart';
-import 'package:flutter_advanced/core/widgets/regular_text_form_field.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/cubit/login_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/repos/login_repository.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/dont_have_account_text.dart';
+import 'package:flutter_advanced/features/auth/widgets/components/email_and_password.dart';
+import 'package:flutter_advanced/features/auth/widgets/components/login_bloc_listener.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/terms_and_conditions_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
 
-class _LoginScreenState extends State<LoginScreen> {
-  @override
 
-  final formKey = GlobalKey<FormState>();
-  bool isObscureText = true;
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -33,43 +31,36 @@ class _LoginScreenState extends State<LoginScreen> {
                 Text("We're excited to have you back, can't wait to see what you've been up to since you last logged in.",
                 style: TextStyles.font14greyRegular,),
                 verticalSpace(36),
-                Form(
-                  key: formKey,
-                  child:   Column(
+                  Column(
                     children: [
-                      const RegularTextFormField(hintText: 'Email'),
-                      verticalSpace(18),
-                       RegularTextFormField(
-                        hintText: 'Password',
-                        isObscureText: isObscureText,
-                        suffixIcon: GestureDetector(
-                          onTap: (){
-                            setState(() {
-                              isObscureText = !isObscureText;
-                            });
-                          },
-                          child: Icon(isObscureText? Icons.visibility_off : Icons.visibility)
-                        ),
-                      ),
-                      verticalSpace(10),
+                      const EmailAndPassword(),
+                      verticalSpace(24),
                       Align(
                         alignment: Alignment.centerRight,
                         child: Text('Forgot Password?',style: TextStyles.font13BlueRegular,)
                       ),
                       verticalSpace(40),
-                      const RegularButton(buttonText: 'Login',),
+                      RegularButton(buttonText: 'Login',onPressed: () {
+                        validateThenLogin(context);
+                      },),
                       verticalSpace(16),
                       const TermsAndConditionsText(),
                       verticalSpace(60),
                       const DontHaveAccountText(),
+                      const LoginBlocListener()
                     ]
                   )
-                )
               ],
             ),
           )
         )
       )
     );
+  }
+
+  void validateThenLogin(BuildContext context) {
+    if(context.read<LoginCubit>().formKey.currentState!.validate()){
+      context.read<LoginCubit>().login();
+    }
   }
 }

@@ -1,5 +1,5 @@
 import 'package:flutter_advanced/core/di/dependency_injection.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/login_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_cubit.dart';
 import 'package:flutter_advanced/features/auth/widgets/login_screen.dart';
 import 'package:flutter_advanced/features/home/widgets/home_screen.dart';
 import 'package:flutter_advanced/features/onboarding/onboarding_screen.dart';
@@ -21,7 +21,7 @@ class AppPages {
      GetPage(
       name: Routes.login,
       page: ()  => BlocProvider(
-        create: (context) => getIt<LoginCubit>(),
+        create: (context) => getIt<AuthCubit>(),
         child: const LoginScreen(),
       ),
     ),

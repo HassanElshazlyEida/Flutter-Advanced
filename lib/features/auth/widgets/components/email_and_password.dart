@@ -4,7 +4,7 @@ import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/password_validations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_advanced/core/widgets/regular_text_form_field.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/login_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_cubit.dart';
 
 class EmailAndPassword extends StatefulWidget {
   const EmailAndPassword({super.key});
@@ -26,7 +26,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   void initState() {
     super.initState();
-    passwordController = context.read<LoginCubit>().passwordController;
+    passwordController = context.read<AuthCubit>().passwordController;
     setUpPasswordControllerListener();
   }
 
@@ -39,10 +39,10 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   @override
   Widget build(BuildContext context) {
     return Form(
-      key: context.read<LoginCubit>().formKey,
+      key: context.read<AuthCubit>().formKey,
       child: Column(
         children: [
-          RegularTextFormField(hintText: 'Email', controller: context.read<LoginCubit>().emailController,
+          RegularTextFormField(hintText: 'Email', controller: context.read<AuthCubit>().emailController,
             validator: (value) {
               if(!RegexValidation.isEmailValid(value ?? '')){
                 return 'Invalid Email';
@@ -52,7 +52,7 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
             },
           ), 
           verticalSpace(18),
-          RegularTextFormField(controller: context.read<LoginCubit>().passwordController,  hintText: 'Password',
+          RegularTextFormField(controller: context.read<AuthCubit>().passwordController,  hintText: 'Password',
             isObscureText: isObscureText,
             suffixIcon: GestureDetector(
               onTap: (){

@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_advanced/core/network/api/api_constants.dart';
 import 'package:flutter_advanced/features/auth/data/models/login_response.dart';
-import 'package:flutter_advanced/features/auth/data/repos/login_repository.dart';
+import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'api_service.g.dart';
@@ -12,6 +12,11 @@ abstract class ApiService {
 
   @POST(ApiConstants.login)
   Future<LoginResponse> login(
+    @Body() LoginRequestBody loginRequestBody
+  );
+
+  @POST(ApiConstants.register)
+  Future<LoginResponse> register(
     @Body() LoginRequestBody loginRequestBody
   );
 } 

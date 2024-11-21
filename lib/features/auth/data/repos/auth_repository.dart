@@ -5,7 +5,7 @@ import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
 import 'package:flutter_advanced/features/auth/data/models/login_response.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'login_repository.g.dart';
+part 'auth_repository.g.dart';
 
 @JsonSerializable()
 class LoginRequestBody{
@@ -17,10 +17,10 @@ class LoginRequestBody{
   Map<String, dynamic> toJson() => _$LoginRequestBodyToJson(this);
 
 }
-class LoginRepository {
+class AuthRepository {
   final ApiService _apiService;
 
-  LoginRepository(this._apiService);
+  AuthRepository(this._apiService);
 
   Future<ApiReturn<LoginResponse>> login(LoginRequestBody loginRequestBody) async {
     try {

@@ -15,7 +15,7 @@ class RegularTextFormField extends StatelessWidget {
   final Widget? suffixIcon;
   final Color? backgroundColor;
   final TextEditingController? controller;
-  // final Function(String?) validator;
+  final Function(String?)? validator;
   const RegularTextFormField({
     super.key,
     this.contentPadding,
@@ -28,7 +28,7 @@ class RegularTextFormField extends StatelessWidget {
     this.suffixIcon,
     this.backgroundColor,
     this.controller,
-    // required this.validator,
+    this.validator,
   });
 
   @override
@@ -77,9 +77,15 @@ class RegularTextFormField extends StatelessWidget {
       ),
       obscureText: isObscureText ?? false,
       style: TextStyles.font14DarkBlueMedium,
-      // validator: (value) {
-      //   return validator(value);
-      // },
+      validator: (value) {
+          if (value == null || value.isEmpty) {
+            return  "$hintText required";
+          }
+          if (validator != null) {
+            return validator!(value);
+          }
+          return null;
+        },
     );
   }
 }

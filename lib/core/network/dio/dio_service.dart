@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-
+import 'package:pretty_dio_logger/pretty_dio_logger.dart';
 class DioService {
   final Dio dio = Dio(BaseOptions(
    
@@ -30,6 +30,11 @@ class DioService {
         }
         return handler.next(e);
       },
+    ));
+    dio.interceptors.add(PrettyDioLogger(
+      requestBody: true,
+      requestHeader: true,
+      responseHeader: true,
     ));
   }
 }

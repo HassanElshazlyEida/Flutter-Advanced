@@ -3,12 +3,19 @@ import 'package:flutter_advanced/core/network/api/api_service.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_error_model.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
 import 'package:flutter_advanced/features/auth/data/models/login_response.dart';
+import 'package:json_annotation/json_annotation.dart';
 
+part 'login_repository.g.dart';
+
+@JsonSerializable()
 class LoginRequestBody{
   final String email;
   final String password;
 
   LoginRequestBody({required this.email, required this.password});
+
+  Map<String, dynamic> toJson() => _$LoginRequestBodyToJson(this);
+
 }
 class LoginRepository {
   final ApiService _apiService;
@@ -22,7 +29,7 @@ class LoginRepository {
     }on DioException catch (e) {
       return ApiReturn.error(ApiErrorModel(
         code: e.response?.statusCode,
-        message: e.message,
+        message: e.response?.data['message'],
       ));
     }
    

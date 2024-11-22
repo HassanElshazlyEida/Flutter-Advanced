@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/core/helpers/extensions.dart';
 import 'package:flutter_advanced/core/themes/colors.dart';
 import 'package:flutter_advanced/core/themes/styles.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -78,7 +79,7 @@ class RegularTextFormField extends StatelessWidget {
       obscureText: isObscureText ?? false,
       style: TextStyles.font14DarkBlueMedium,
       validator: (value) {
-          if (value == null || value.isEmpty) {
+          if (value!.isNullOrEmpty()) {
             return  "$hintText required";
           }
           if (validator != null) {

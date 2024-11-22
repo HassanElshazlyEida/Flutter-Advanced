@@ -17,17 +17,11 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
   bool isObscureText = true;
   late TextEditingController passwordController;
 
-  bool hasLowerCase = false;
-  bool hasUpperCase = false;
-  bool hasSpecialChar = false;
-  bool hasDigit = false;
-  bool hasMinLength = false;
 
   @override
   void initState() {
     super.initState();
     passwordController = context.read<AuthCubit>().passwordController;
-    setUpPasswordControllerListener();
   }
 
   @override
@@ -63,28 +57,9 @@ class _EmailAndPasswordState extends State<EmailAndPassword> {
               child: Icon(isObscureText? Icons.visibility_off : Icons.visibility)
             ),
           ),
-          verticalSpace(24),
-          PasswordValidations(
-            hasLowerCase: hasLowerCase,
-            hasUpperCase: hasUpperCase,
-            hasSpecialChar: hasSpecialChar,
-            hasDigit: hasDigit,
-            hasMinLength: hasMinLength,
-          )
           ],
       )
     );
   }
   
-  void setUpPasswordControllerListener() {
-    passwordController.addListener(() {
-      setState(() {
-        hasLowerCase =  RegexValidation.hasLowerCase(passwordController.text);
-        hasUpperCase =  RegexValidation.hasUpperCase(passwordController.text);
-        hasSpecialChar =  RegexValidation.hasSpecialCharacter(passwordController.text);
-        hasDigit =  RegexValidation.hasNumber(passwordController.text);
-        hasMinLength =  RegexValidation.hasMinLength(passwordController.text);
-      });
-    });
-  }
 }

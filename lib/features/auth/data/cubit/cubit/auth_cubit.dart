@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
 import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_state.dart';
 import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
 
@@ -7,24 +8,53 @@ class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
   AuthCubit(this._authRepository) : super(const AuthState.initial());
 
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController passwordConfirmationController = TextEditingController();
 
-  void login() async {
+ 
+
+  Future<void> _handleAuthOperation<T>({
+    required Future<ApiReturn<T>> Function() authAction,
+  }) async {
     emit(const AuthState.loading());
-    final response = await _authRepository.login(
-       LoginRequestBody(
-        email: emailController.text,
-        password: passwordController.text,
+    final response = await authAction();
+    response.when(
+      success: (authResponse) {
+        emit(AuthState.success(authResponse));
+      },
+      error: (error) {
+        emit(AuthState.error(message: error.message ?? 'An error occurred'));
+      },
+    );
+  }
+
+  void login() {
+    _handleAuthOperation(
+      authAction: () => _authRepository.login(
+        LoginRequestBody(
+          email: emailController.text,
+          password: passwordController.text,
+        ),
       ),
     );
-    response.when(
-      success: (loginResponse){
-      emit(AuthState.success(loginResponse));
-    }, error: (error){
-      emit(AuthState.error(message: error.message ?? ''));
-    });
-    
+  }
+
+  void register() {
+    _handleAuthOperation(
+      authAction: () => _authRepository.register(
+        RegisterRequestBody(
+          name: nameController.text,
+          email: emailController.text,
+          phone: phoneController.text,
+          password: passwordController.text,
+          passwordConfirmation: passwordConfirmationController.text,
+          gender: 0,
+        ),
+      ),
+    );
   }
 }

@@ -4,17 +4,26 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
-            "name": "flutter_advanced",
-            "request": "launch",
-            "type": "dart"
-        },
-        {
-            "name": "IPhone 15 Pro Max",
+            "name": "prod- IPhone 15 Pro Max",
             "request": "launch",
             "type": "dart",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod", "--target", "lib/main_prod.dart" ],
+            // # flavor name == scheme name on Xcode
             "deviceId": "67D8D1A9-53E3-424F-B34A-366BA1C80D3D"
         },
+        {
+            "name": "dev- IPhone 15 Pro Max",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev", "--target", "lib/main_dev.dart" ],
+            // # flavor name == scheme name on Xcode
+            "deviceId": "67D8D1A9-53E3-424F-B34A-366BA1C80D3D"
+        },
+        
         {
             "name": "IPad Pro",
             "request": "launch",
@@ -22,7 +31,17 @@
             "deviceId": "ED2ADF74-5882-4CFB-A584-0C5DAD66ABCD"
         },
         {
-            "name": "Pixel 7 API 34 android 14.0",
+            "name": "dev- Pixel 7 API 34 android 14.0",
+            "program": "lib/main_dev.dart",
+            "args": ["--flavor", "dev", "--target", "lib/main_dev.dart" ],
+            "request": "launch",
+            "type": "dart",
+            "deviceId": "emulator-5554"
+        },
+        {
+            "name": "prod- Pixel 7 API 34 android 14.0",
+            "program": "lib/main_prod.dart",
+            "args": ["--flavor", "prod", "--target", "lib/main_prod.dart" ],
             "request": "launch",
             "type": "dart",
             "deviceId": "emulator-5554"
@@ -38,7 +57,7 @@
     "compounds": [
         {
             "name": "All devices",
-            "configurations": ["IPhone 15 Pro Max","Phone API 31 android 12.0"]
+            "configurations": ["Phone API 31 android 12.0"]
         }
     ]
     

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/features/home/widgets/components/banner.dart';
 import 'package:flutter_advanced/features/home/widgets/components/home_top_bar.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -16,6 +17,7 @@ class HomeScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 HomeTopBar(),
+                HomeBanner(),
               ],
             )
           ),

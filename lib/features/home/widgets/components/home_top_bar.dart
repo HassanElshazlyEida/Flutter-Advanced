@@ -14,7 +14,7 @@ class HomeTopBar extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Hello, Omar ', style: TextStyles.font18DarkBlueBold,),
+              Text('Hi, Hassan ', style: TextStyles.font18DarkBlueBold,),
               Text('How Are you Today?', style: TextStyles.font12greyRegular,),
              
             ],

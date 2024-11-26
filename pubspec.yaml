@@ -54,7 +54,6 @@ dependencies:
   pretty_dio_logger: ^1.4.0
   # localization 
   easy_localization: ^3.0.7
-  intl: ^0.18.1
   # splash screens
   flutter_native_splash: ^2.3.5
   # svg images
@@ -70,7 +69,8 @@ dependencies:
   # reading and writing simple key-value pairs
   shared_preferences: ^2.2.3
 
-
+dependency_overrides:
+  intl: any
 dev_dependencies:
   flutter_test:
     sdk: flutter

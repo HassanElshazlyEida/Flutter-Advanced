@@ -22,3 +22,13 @@ Map<String, dynamic> _$AuthResponseToJson(AuthResponse instance) =>
       'status': instance.status,
       'code': instance.code,
     };
+
+UserData _$UserDataFromJson(Map<String, dynamic> json) => UserData(
+      username: json['username'] as String?,
+      token: json['token'] as String?,
+    );
+
+Map<String, dynamic> _$UserDataToJson(UserData instance) => <String, dynamic>{
+      'username': instance.username,
+      'token': instance.token,
+    };

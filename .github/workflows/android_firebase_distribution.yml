@@ -32,7 +32,9 @@ jobs:
         
     - name: Build and Distribute App
       env:
+        # github secrets
         FIREBASE_CLI_TOKEN: ${{ secrets.FIREBASE_CLI_TOKEN }}
+        # or .env FIREBASE_CLI_TOKEN: ${FIREBASE_CLI_TOKEN}
       run: |
         bundle exec fastlane android deploy_firebase
       working-directory: android

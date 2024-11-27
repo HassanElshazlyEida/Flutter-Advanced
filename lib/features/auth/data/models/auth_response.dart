@@ -18,9 +18,10 @@ class AuthResponse {
 @JsonSerializable()
 
 class UserData {
-  final String? username;
+  String? username;
+  String? token;
 
-  const UserData({required this.username});
+  UserData({this.username, this.token});
 
   factory UserData.fromJson(Map<String,dynamic> json) => _$UserDataFromJson(json);
 }

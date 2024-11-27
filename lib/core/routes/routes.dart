@@ -1,4 +1,6 @@
 import 'package:flutter_advanced/core/di/dependency_injection.dart';
+import 'package:flutter_advanced/core/middleware/auth_middleware.dart';
+import 'package:flutter_advanced/core/middleware/guest_middleware.dart';
 import 'package:flutter_advanced/features/auth/data/cubit/auth_cubit.dart';
 import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
 import 'package:flutter_advanced/features/auth/widgets/login_screen.dart';
@@ -22,6 +24,9 @@ class AppPages {
     GetPage(
       name: Routes.onboarding,
       page: ()  => const OnboardingScreen(), 
+      middlewares: [
+        GuestMiddleware()
+      ],
     ),
     GetPage(
       name: Routes.login,
@@ -29,6 +34,9 @@ class AppPages {
         create: (context) => AuthCubit(getIt.get<AuthRepository>()),
         child: const LoginScreen(),
       ),
+      middlewares: [
+        GuestMiddleware()
+      ],
     ),
     GetPage(
       name: Routes.register,
@@ -36,6 +44,9 @@ class AppPages {
         create: (context) => AuthCubit(getIt.get<AuthRepository>()),
         child: const RegisterScreen(),
       ),
+      middlewares: [
+        GuestMiddleware()
+      ],
     ),
     GetPage(
       name: Routes.home,
@@ -43,6 +54,9 @@ class AppPages {
         create: (context) => HomeCubit(getIt.get<HomeRepository>())..getSpecializations(),
         child: const HomeScreen(),
       ),
+      middlewares: [
+        AuthMiddleware()
+      ]
     ),
   ];
 }

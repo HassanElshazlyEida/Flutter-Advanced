@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/helpers/extensions.dart';
 import 'package:flutter_advanced/core/helpers/regex_validation.dart';
 import 'package:flutter_advanced/core/widgets/regular_text_form_field.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/auth_cubit.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/password_validations.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

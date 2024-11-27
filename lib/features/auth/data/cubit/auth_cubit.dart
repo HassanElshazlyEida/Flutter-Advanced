@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_state.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/auth_state.dart';
 import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
 
 class AuthCubit extends Cubit<AuthState> {

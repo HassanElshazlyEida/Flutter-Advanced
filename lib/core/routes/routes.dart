@@ -1,7 +1,10 @@
 import 'package:flutter_advanced/core/di/dependency_injection.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/auth_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
 import 'package:flutter_advanced/features/auth/widgets/login_screen.dart';
 import 'package:flutter_advanced/features/auth/widgets/register_screen.dart';
+import 'package:flutter_advanced/features/home/data/cubit/home_cubit.dart';
+import 'package:flutter_advanced/features/home/data/repos/home_repository.dart';
 import 'package:flutter_advanced/features/home/widgets/home_screen.dart';
 import 'package:flutter_advanced/features/onboarding/onboarding_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -23,20 +26,23 @@ class AppPages {
     GetPage(
       name: Routes.login,
       page: ()  => BlocProvider(
-        create: (context) => getIt<AuthCubit>(),
+        create: (context) => AuthCubit(getIt.get<AuthRepository>()),
         child: const LoginScreen(),
       ),
     ),
     GetPage(
       name: Routes.register,
       page: ()  => BlocProvider(
-        create: (context) => getIt<AuthCubit>(),
+        create: (context) => AuthCubit(getIt.get<AuthRepository>()),
         child: const RegisterScreen(),
       ),
     ),
     GetPage(
       name: Routes.home,
-      page: ()  => const HomeScreen(), 
+      page: ()  => BlocProvider(
+        create: (context) => HomeCubit(getIt.get<HomeRepository>())..getSpecializations(),
+        child: const HomeScreen(),
+      ),
     ),
   ];
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/themes/styles.dart';
 import 'package:flutter_advanced/core/widgets/regular_button.dart';
-import 'package:flutter_advanced/features/auth/data/cubit/cubit/auth_cubit.dart';
+import 'package:flutter_advanced/features/auth/data/cubit/auth_cubit.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/already_have_account_text.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/register_bloc_listener.dart';
 import 'package:flutter_advanced/features/auth/widgets/components/register_form.dart';

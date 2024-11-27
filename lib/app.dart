@@ -19,7 +19,7 @@ class App extends StatelessWidget {
             scaffoldBackgroundColor: Colors.white
           ),
           debugShowCheckedModeBanner: false,
-          initialRoute: Routes.home,
+          initialRoute: Routes.onboarding,
           getPages: AppPages.pages,
         )
     );

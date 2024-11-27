@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_advanced/core/helpers/cache_helper.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_error_model.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
 import 'package:flutter_advanced/features/auth/data/api/auth_api_service.dart';
@@ -35,7 +36,14 @@ class AuthRepository {
   Future<ApiReturn<AuthResponse>> register(RegisterRequestBody registerRequestBody) {
     return _handleApiRequest(() => _apiService.register(registerRequestBody));
   }
-  
+
+  static bool isAuthenticated() {
+    if(CacheHelper.getCache('token') !=null){
+      return true;
+    }
+    return false;
+  }
+
 }
 @JsonSerializable()
 class LoginRequestBody{

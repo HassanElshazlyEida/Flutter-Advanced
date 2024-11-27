@@ -1,8 +1,13 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_advanced/core/helpers/cache_helper.dart';
 import 'package:flutter_advanced/core/network/api/handling/api_return.dart';
 import 'package:flutter_advanced/features/auth/data/cubit/auth_state.dart';
+import 'package:flutter_advanced/features/auth/data/models/auth_response.dart';
 import 'package:flutter_advanced/features/auth/data/repos/auth_repository.dart';
+import 'package:flutter/foundation.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepository _authRepository;
@@ -17,13 +22,14 @@ class AuthCubit extends Cubit<AuthState> {
 
  
 
-  Future<void> _handleAuthOperation<T>({
-    required Future<ApiReturn<T>> Function() authAction,
+  Future<void> _handleAuthOperation({
+    required Future<ApiReturn<AuthResponse>> Function() authAction,
   }) async {
     emit(const AuthState.loading());
     final response = await authAction();
     response.when(
-      success: (authResponse) {
+      success: (AuthResponse authResponse) async {
+        await saveUserToken(authResponse.userData?.token ?? '');
         emit(AuthState.success(authResponse));
       },
       error: (error) {
@@ -56,5 +62,9 @@ class AuthCubit extends Cubit<AuthState> {
         ),
       ),
     );
+  }
+  Future<void> saveUserToken(String token) async {
+    print('user token $token');
+    await CacheHelper.setCache('token',token);
   }
 }

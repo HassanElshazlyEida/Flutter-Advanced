@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/features/home/widgets/components/banner.dart';
 import 'package:flutter_advanced/features/home/widgets/components/home_top_bar.dart';
-import 'package:flutter_advanced/features/home/widgets/components/specializations_bloc_builder.dart';
+import 'package:flutter_advanced/features/home/widgets/components/specializations/specializations_bloc_builder.dart';
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 

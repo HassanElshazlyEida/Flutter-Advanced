@@ -72,6 +72,8 @@ dependencies:
   flutter_dotenv: ^5.2.1
   # secure storage
   flutter_secure_storage: ^9.2.2
+  # add shimmer effect to widgets
+  shimmer: ^3.0.0
 
 dependency_overrides:
   intl: any

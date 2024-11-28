@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/core/themes/styles.dart';
@@ -21,10 +22,10 @@ class DoctorsListView extends StatelessWidget {
 
                 doctorsList?[index]?.photo != null ? ClipRRect(
                   borderRadius: BorderRadius.circular(12.0),
-                  child: Image.network(
+                  child: CachedNetworkImage(
                     width: 110.w,
                     height: 120.h,
-                    doctorsList?[index]!.photo! ?? '',
+                    imageUrl: doctorsList?[index]!.photo! ?? '',
                     fit: BoxFit.cover,
                   ),
                 ):  Container(),

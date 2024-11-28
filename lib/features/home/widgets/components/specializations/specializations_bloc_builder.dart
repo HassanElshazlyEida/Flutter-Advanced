@@ -2,11 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_advanced/core/helpers/spacing.dart';
 import 'package:flutter_advanced/features/home/data/cubit/home_cubit.dart';
 import 'package:flutter_advanced/features/home/data/models/specializations_response_model.dart';
-import 'package:flutter_advanced/features/home/widgets/components/doctors_list_view.dart';
-import 'package:flutter_advanced/features/home/widgets/components/row_specializations.dart';
-import 'package:flutter_advanced/features/home/widgets/components/row_specializations_see_all.dart';
+import 'package:flutter_advanced/features/home/widgets/components/doctors/doctor_bloc_builder.dart';
+import 'package:flutter_advanced/features/home/widgets/components/shimmer/doctors_shimmer_loading.dart';
+import 'package:flutter_advanced/features/home/widgets/components/shimmer/specializations_shimmer_loading.dart';
+import 'package:flutter_advanced/features/home/widgets/components/specializations/row_specializations.dart';
+import 'package:flutter_advanced/features/home/widgets/components/specializations/row_specializations_see_all.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 
 class SpecializationsBlocBuilder extends StatelessWidget {
   const SpecializationsBlocBuilder({super.key});
@@ -20,8 +23,8 @@ class SpecializationsBlocBuilder extends StatelessWidget {
       current is SpecializationsError ,
       builder: (context, state) {
         return state.maybeWhen(
-          specializationsSuccess: (SpecializationsResponseModel specializationsResponseModel){
-            return setupSuccess(specializationsResponseModel);
+          specializationsSuccess: (List<SpecializationsData?>?  specializationsData) {
+            return setupSuccess(specializationsData);
           },
           specializationsLoading: (){
             return setUpLoading();
@@ -38,28 +41,31 @@ class SpecializationsBlocBuilder extends StatelessWidget {
     );
   }
   Widget setUpLoading(){
-    return   SizedBox(
-      height: 100.h,
-      child: const Center(child : CircularProgressIndicator()),
+    return  Expanded(
+      child: Column(
+        children: [
+          const SpecializationsShimmerLoading(),
+          verticalSpace(8),
+          const DoctorsShimmerLoading(),
+        ],
+       )
     );
   }
   Widget setupError() {
     return const SizedBox.shrink();
   }
-  Widget setupSuccess(SpecializationsResponseModel specializations) {
-   var specializationDataList = specializations.specializationDataList;
+  Widget setupSuccess(List<SpecializationsData?>?   specializationsData) {
     return   Expanded(
       child: Column(
         children: [
           const RowSpecializationsSeeAll(),
           verticalSpace(16),
           RowSpecializations(
-            specializationDataList: specializationDataList,
+            specializationDataList: specializationsData,
           ),
+    
           verticalSpace(8),
-            DoctorsListView(
-            doctorsList: specializationDataList?[0]?.doctorsList,
-          )
+          const DoctorsBlocBuilder()
         ],
       ),
     );
